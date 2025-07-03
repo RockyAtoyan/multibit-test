@@ -1,0 +1,16 @@
+<div class="p-6 border border-border rounded-lg shadow-lg bg-white">
+  @if(this.taskApi.getById(taskId); as task) {
+  <p class="text-4xl line-clamp-2 mb-2" [title]="task.title">{{task.title}}</p>
+  <p class="text-sm mb-5">Created at {{task.createdAt.toLocaleString()}}</p>
+  <app-checkbox
+    [checked]="task.isCompleted"
+    (change)="toggleCompletion()"
+    [label]="task.isCompleted ? 'Completed' : 'Uncompleted'"
+  ></app-checkbox>
+  @if(task.description) {
+  <p class="text-lg mt-5">{{task.description}}</p>
+  } }
+  <div class="flex justify-end mt-5">
+    <a class="text-blue-600 hover:underline" [routerLink]='["/"]'>Back</a>
+  </div>
+</div>
