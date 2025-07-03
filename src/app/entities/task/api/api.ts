@@ -1,16 +1,34 @@
 import cuid from 'cuid';
 import { Task, TaskBase } from '../model/task';
 import { Injectable, signal } from '@angular/core';
+import { FilterValue } from '../../../shared/types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskApi {
-  private tasks$ = signal(new Map<string, Task>());
+  tasks$ = signal(new Map<string, Task>());
 
-  public getAll(): Task[] | null {
+  public getAll(filterValue?: FilterValue, searchValue = ''): Task[] | null {
     try {
-      return Array.from(this.tasks$().values());
+      return Array.from(this.tasks$().values())
+        .filter((task) => {
+          return (
+            task.title.includes(searchValue) ||
+            task.description?.includes(searchValue)
+          );
+        })
+        .sort((t1, t2) => {
+          const t1CreatedAt = new Date(t1.createdAt).getTime();
+          const t2CreatedAt = new Date(t2.createdAt).getTime();
+          if (filterValue === 'createdAt') {
+            return t1CreatedAt - t2CreatedAt;
+          }
+          if (filterValue === 'createdAtDesc') {
+            return t2CreatedAt - t1CreatedAt;
+          }
+          return t1.title.localeCompare(t2.title);
+        });
     } catch (error) {
       return null;
     }
