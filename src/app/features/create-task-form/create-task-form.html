@@ -1,0 +1,24 @@
+<div>
+  <p class="text-xl font-semibold mb-5">Create task</p>
+  <form
+    class="flex flex-col items-end gap-3"
+    [formGroup]="form"
+    (ngSubmit)="onSubmit()"
+  >
+    <app-input
+      [required]="true"
+      class="w-full"
+      placeholder="Title"
+      label="Task's title"
+      formControlName="title"
+    ></app-input>
+    <app-input
+      [required]="true"
+      class="w-full"
+      placeholder="Description"
+      label="Task's description"
+      formControlName="description"
+    ></app-input>
+    <app-button type="submit">Submit</app-button>
+  </form>
+</div>
