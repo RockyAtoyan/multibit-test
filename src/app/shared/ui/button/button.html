@@ -1,0 +1,9 @@
+<button
+  [type]="type"
+  [disabled]="disabled || loading"
+  [class]="buttonClasses"
+  [attr.aria-busy]="loading"
+  #buttonRef
+>
+  <ng-content></ng-content>
+</button>

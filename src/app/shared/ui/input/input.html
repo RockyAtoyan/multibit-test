@@ -1,0 +1,63 @@
+<div>
+  @if (label) {
+
+  <label
+    [for]="id"
+    class="block text-sm font-medium mb-1"
+    [class.text-gray-700]="!disabled"
+    [class.text-gray-400]="disabled"
+  >
+    {{ label }} @if (required) {
+    <span class="text-red-500">*</span>
+    }
+  </label>
+  }
+
+  <div class="relative rounded-md shadow-sm">
+    <input
+      [id]="id"
+      [type]="type"
+      [placeholder]="placeholder"
+      [value]="value"
+      (input)="onInput($event)"
+      [disabled]="disabled"
+      [attr.aria-invalid]="!!error"
+      [class]="inputClasses"
+      [class.border-gray-300]="!error"
+      [class.border-red-300]="!!error"
+      [class.text-gray-900]="!disabled"
+      [class.text-gray-400]="disabled"
+      [class.bg-gray-50]="disabled"
+      [class.pr-10]="!!error"
+      [class.focus:border-indigo-500]="!error"
+      [class.focus:ring-indigo-500]="!error"
+      [class.focus:border-red-500]="!!error"
+      [class.focus:ring-red-500]="!!error"
+    />
+
+    @if (error) {
+    <div
+      class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3"
+    >
+      <svg
+        class="h-5 w-5 text-red-500"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-5a.75.75 0 01.75.75v4.5a.75.75 0 01-1.5 0v-4.5A.75.75 0 0110 5zm0 10a1 1 0 100-2 1 1 0 000 2z"
+          clip-rule="evenodd"
+        />
+      </svg>
+    </div>
+    }
+  </div>
+
+  @if(hint && !error) {
+  <p class="mt-1 text-sm text-gray-500">{{ hint }}</p>
+  } @if(error) {
+  <p class="mt-1 text-sm text-red-600">{{ error }}</p>
+  }
+</div>

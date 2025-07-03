@@ -1,0 +1,13 @@
+<label class="inline-flex items-center cursor-pointer">
+  <input
+    type="checkbox"
+    [checked]="checked"
+    [disabled]="disabled"
+    (change)="onChange($event)"
+    class="h-5 w-5 rounded focus:ring-{{color}}-500 border-gray-300 checked:bg-primary accent-primary"
+    [class.opacity-50]="disabled"
+  />
+  @if(label) {
+  <span ngIf="label" class="ml-2 text-gray-700">{{ label }}</span>
+  }
+</label>
