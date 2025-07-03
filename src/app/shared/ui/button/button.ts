@@ -18,8 +18,9 @@ export class Button {
 
   get buttonClasses(): string {
     const baseClasses = [
+      'cursor-pointer',
       'font-medium',
-      'rounded',
+      'rounded-md',
       'transition-colors',
       'focus:outline-none',
       'focus:ring-2',
@@ -36,7 +37,8 @@ export class Button {
     };
 
     const variantClasses = {
-      primary: 'bg-primary hover:bg-primary/80 text-white focus:ring-blue-500',
+      primary:
+        'bg-primary hover:bg-primary/80 text-white focus:ring-primary/60',
       secondary:
         'bg-gray-200 hover:bg-gray-300 text-gray-800 focus:ring-gray-500',
       danger: 'bg-red-600 hover:bg-red-700 text-white focus:ring-red-500',
