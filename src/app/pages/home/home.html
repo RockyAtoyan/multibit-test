@@ -1,0 +1,40 @@
+<div class="flex-col lg:flex-row flex items-center gap-5">
+  <app-button (click)="openModal()"> Create task </app-button>
+  <app-modal [isOpen]="showModal" (closed)="onModalClosed()">
+    <create-task-form [onCreate]="closeModal.bind(this)"></create-task-form>
+  </app-modal>
+  <app-input
+    [control]="searchControl"
+    class="w-full max-w-md"
+    placeholder="Search"
+  ></app-input>
+  <div class="ml-10 flex-col md:flex-row flex items-center gap-3">
+    <p class="text-sm text-black/60">filter by</p>
+    <app-button
+      [variant]="filterValue === 'title' ? 'link' : 'ghost'"
+      (click)='setFilter("title")'
+      >Title</app-button
+    >
+    <app-button
+      [variant]="filterValue === 'createdAt' ? 'link' : 'ghost'"
+      variant="ghost"
+      (click)='setFilter("createdAt")'
+      >Created at</app-button
+    >
+    <app-button
+      [variant]="filterValue === 'createdAtDesc' ? 'link' : 'ghost'"
+      variant="link"
+      (click)='setFilter("createdAtDesc")'
+      >Created at (desc)</app-button
+    >
+  </div>
+</div>
+
+<div class="mt-5 flex flex-col gap-3">
+  @if(taskApi.getAll(filterValue, searchValue)?.length) { @for (task of
+  taskApi.getAll(filterValue, searchValue); track task.id) {
+  <task-card [task]="task"></task-card>
+  } } @else {
+  <p>There are no tasks!</p>
+  }
+</div>
