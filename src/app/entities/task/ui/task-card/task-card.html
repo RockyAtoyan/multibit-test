@@ -1,0 +1,16 @@
+<div class="p-6 border border-border rounded-lg shadow-lg bg-white">
+  @if(task) {
+  <p class="text-2xl line-clamp-2 mb-3" [title]="task.title">{{task.title}}</p>
+  <div class="flex justify-between items-center">
+    <label>
+      <app-checkbox
+        [checked]="task.isCompleted"
+        (change)="toggleCompletion()"
+        [label]="task.isCompleted ? 'Completed' : 'Uncompleted'"
+      ></app-checkbox>
+      <p></p>
+    </label>
+    <app-button variant="danger">Delete</app-button>
+  </div>
+  }
+</div>
