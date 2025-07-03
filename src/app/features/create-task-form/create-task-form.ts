@@ -27,7 +27,6 @@ export class CreateTaskForm {
   constructor(private taskApi: TaskApi) {}
 
   onSubmit() {
-    console.log('Form submitted', this.form.value);
     const data = this.form.value;
     if (!data.title) {
       this.form.setErrors({ title: 'Title is required' });
@@ -38,7 +37,7 @@ export class CreateTaskForm {
       isCompleted: false,
       description: data.description || '',
     });
-    this.form.reset({ title: 'test', description: '' });
+    this.form.reset({ title: '', description: '' });
     this.onCreate?.();
   }
 }

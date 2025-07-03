@@ -1,9 +1,11 @@
 import {
   Component,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Input as InputDecorator,
   Output,
+  viewChild,
 } from '@angular/core';
 import { cn } from '../../util';
 import {
@@ -43,6 +45,8 @@ export class Input implements ControlValueAccessor {
 
   @Output() valueChange = new EventEmitter<string>();
 
+  input = viewChild.required<ElementRef>('input');
+
   onChange: any = () => {};
   onTouched: any = () => {};
 
@@ -54,7 +58,10 @@ export class Input implements ControlValueAccessor {
 
   writeValue(value: string): void {
     this.value = value || '';
-    console.log(this.value);
+    const inputElement = this.input()?.nativeElement;
+    if (inputElement) {
+      inputElement.value = this.value;
+    }
   }
 
   registerOnChange(fn: any): void {

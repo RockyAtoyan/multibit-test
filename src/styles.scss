@@ -1,11 +1,17 @@
 @use "tailwindcss";
 
 :root {
-	--primary: black;
+  --primary: black;
+  --border: #a7a7a7;
 }
 
 @theme {
- --color-primary: var(--primary)
+  --color-primary: var(--primary);
+  --color-border: var(--border);
 }
 
-@layer base {}
+@layer base {
+  body {
+    @apply bg-primary/10;
+  }
+}

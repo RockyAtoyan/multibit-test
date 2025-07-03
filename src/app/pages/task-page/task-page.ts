@@ -27,7 +27,6 @@ export class TaskPage implements OnInit {
 
   toggleCompletion() {
     const task = this.taskApi.getById(this.taskId);
-    console.log('task', task);
     if (!task) return;
     this.taskApi.update(task.id, {
       isCompleted: !task.isCompleted,
